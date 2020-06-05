@@ -23,6 +23,7 @@ public class Chunk{
 	
 	public int gridX;
 	public int gridZ;
+	public int chunk_seed;
 	
 	public List<Entity> entities;
 	
@@ -42,6 +43,7 @@ public class Chunk{
 	public Chunk(int gridX,int gridZ) {
 		this.gridX = gridX;
 		this.gridZ = gridZ;
+		this.chunk_seed = gridX * SEED ^ gridZ;
 		entities = new ArrayList<Entity>();
 		cubes = new byte[16][256][16];
 		mesh_data = new ChunkMesh();

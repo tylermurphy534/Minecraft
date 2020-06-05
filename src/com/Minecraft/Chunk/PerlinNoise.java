@@ -29,22 +29,22 @@ public class PerlinNoise {
 
 	private float m_gradientPerturbAmp = (float) (1.0 / 0.45);
 
-	public static double getNoise(int x, int y, int z) {
-		PerlinNoise noise = new PerlinNoise(Chunk.SEED);
+	public static double getNoise(int seed, int x, int y, int z) {
+		PerlinNoise noise = new PerlinNoise(seed);
 		noise.m_noiseType = NoiseType.Perlin;
 		noise.m_fractalType = FractalType.FBM;
 		return noise.GetNoise(x,y,z);
 	}
 	
-	public static double getNoise(int x, int z,NoiseType noiseType) {
-		PerlinNoise noise = new PerlinNoise(Chunk.SEED);
+	public static double getNoise(int seed, int x, int z,NoiseType noiseType) {
+		PerlinNoise noise = new PerlinNoise(seed);
 		noise.m_noiseType = noiseType;
 		noise.m_fractalType = FractalType.FBM;
 		return noise.GetNoise(x,z);
 	}
 	
-	public static double getNoise(int x, int z) {
-		PerlinNoise noise = new PerlinNoise(Chunk.SEED);
+	public static double getNoise(int seed, int x, int z) {
+		PerlinNoise noise = new PerlinNoise(seed);
 		noise.m_noiseType = NoiseType.Perlin;
 		noise.m_fractalType = FractalType.FBM;
 		return noise.GetNoise(x,z);

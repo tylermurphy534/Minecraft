@@ -29,10 +29,10 @@ public class Generator {
         float fracX = x - intX;
         float fracZ = z - intZ;
          
-        float v1 = (float) PerlinNoise.getNoise(intX, intZ);
-        float v2 = (float) PerlinNoise.getNoise(intX + 1, intZ);
-        float v3 = (float) PerlinNoise.getNoise(intX, intZ + 1);
-        float v4 = (float) PerlinNoise.getNoise(intX + 1, intZ + 1);
+        float v1 = (float) PerlinNoise.getNoise(Chunk.SEED, intX, intZ);
+        float v2 = (float) PerlinNoise.getNoise(Chunk.SEED, intX + 1, intZ);
+        float v3 = (float) PerlinNoise.getNoise(Chunk.SEED, intX, intZ + 1);
+        float v4 = (float) PerlinNoise.getNoise(Chunk.SEED, intX + 1, intZ + 1);
         float i1 = interpolate(v1, v2, fracX);
         float i2 = interpolate(v3, v4, fracX);
         return interpolate(i1, i2, fracZ);
@@ -63,10 +63,10 @@ public class Generator {
 		for(int x=0;x<16;x++) {
 			for(int z=0;z<16;z++) {
 				int top = generateHeight(c.gridX*16+x, c.gridZ*16+z);
-				double n1 = PerlinNoise.getNoise(x*2+z, z/2-x,PerlinNoise.NoiseType.WhiteNoise);
-				double n2 = PerlinNoise.getNoise(z*5-z*2, x/4+6-x*5,PerlinNoise.NoiseType.WhiteNoise);
-				double n3 = PerlinNoise.getNoise(x/5+17, z/14,PerlinNoise.NoiseType.WhiteNoise);
-				double n4 = PerlinNoise.getNoise(z+5, (int)Math.pow(x,2),PerlinNoise.NoiseType.WhiteNoise);
+				double n1 = PerlinNoise.getNoise(c.chunk_seed, x*2+z, z/2-x,PerlinNoise.NoiseType.WhiteNoise);
+				double n2 = PerlinNoise.getNoise(c.chunk_seed, z*5-z*2, x/4+6-x*5,PerlinNoise.NoiseType.WhiteNoise);
+				double n3 = PerlinNoise.getNoise(c.chunk_seed, x/5+17, z/14,PerlinNoise.NoiseType.WhiteNoise);
+				double n4 = PerlinNoise.getNoise(c.chunk_seed, z+5, (int)Math.pow(x,2),PerlinNoise.NoiseType.WhiteNoise);
 				if(top<=95) {
 					if(n1*n2/n3*n4>2 && top > 90) {
 						c.cubes[x][top+1][z] = 15;

@@ -47,7 +47,7 @@ public class Player extends Entity implements Serializable {
 		dx += (float) (distance2 * Math.sin(Math.toRadians(90-super.getRotation().y)));
 		dz += (float) (distance2 * Math.cos(Math.toRadians(90+super.getRotation().y)));
 		if(isInAir && !(isFlying || isSwiming)) upwardsSpeed += GRAVITY * Display.getFrameTimeSeconds();
-		upwardsSpeed *= (isSwiming && !isFlying  ? .25 : 1);
+		upwardsSpeed *= (isSwiming && !isFlying  ? .5 : 1);
 		float dy = (float) (upwardsSpeed * Display.getFrameTimeSeconds());
 		
 		if(!willCollide(dx,0,0)) 
@@ -70,9 +70,9 @@ public class Player extends Entity implements Serializable {
 		float px = getPosition().x;
 		float py = getPosition().y;
 		float pz = getPosition().z;
-		if(getPosition().x<0)
+		if(getPosition().x+Scene.world_origin.x<0)
 			px--;
-		if(getPosition().z<0)
+		if(getPosition().z+Scene.world_origin.y<0)
 			pz--;
 		int[] nbc = {
 				(int) (px+dx+.25f),

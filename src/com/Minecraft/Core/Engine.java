@@ -1,10 +1,6 @@
 package com.Minecraft.Core;
 
-import org.lwjgl.openal.AL10;
 import org.lwjgl.openal.AL11;
-import org.lwjgl.opengl.GL43;
-import org.lwjgl.opengl.GLDebugMessageCallback;
-import org.lwjgl.system.MemoryUtil;
 
 import com.Minecraft.Audio.SoundManager;
 import com.Minecraft.Data.Texture;
@@ -13,16 +9,13 @@ import com.Minecraft.Util.Display;
 import com.Minecraft.Util.Flags;
 import com.Minecraft.Util.Input;
 
-import com.Minecraft.Core.Engine;
-
 public class Engine {
 	
 	private static Game game;
 	
 	private static long currentTime = System.nanoTime();
 	private static long nanoSeconendsPassed;
-	private static int tps;
-	private static int ticks = 0;
+	private static int tps,ticks;
 	private static MainRenderer renderer;
 	
 	public static void main(String args[]) {
@@ -30,20 +23,11 @@ public class Engine {
 		Display.create(1280, 720, "Minecraft", Texture.loadRawTextureData("icon"));
 		Input.addInput(new GameInput());
 		SoundManager.init();
-		AL10.alDistanceModel(AL11.AL_LINEAR_DISTANCE_CLAMPED);
+		AL11.alDistanceModel(AL11.AL_LINEAR_DISTANCE_CLAMPED);
 
 		game = new Game();
 		game.init();
 		renderer = new MainRenderer();
-		
-		GLDebugMessageCallback callback = new GLDebugMessageCallback() {
-			public void invoke(int source, int type, int id, int severity, int length, long message, long userParam) {
-				String msg = MemoryUtil.memUTF8(MemoryUtil.memByteBuffer(message, length));
-				System.out.println(msg);
-			}
-		};
-		
-		GL43.glDebugMessageCallback(callback, 0);
 		
 		while(!Display.closed() && Flags.actionForceClose == false) {
 			

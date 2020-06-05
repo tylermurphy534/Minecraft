@@ -1,6 +1,8 @@
 package com.Minecraft.World;
 import java.util.Random;
 
+import org.lwjgl.util.vector.Vector2f;
+
 import com.Minecraft.Chunk.Chunk;
 import com.Minecraft.Scene.Camera;
 import com.Minecraft.Scene.Player;
@@ -19,8 +21,8 @@ public class SceneCreator {
 		
 		if(!ResourceManager.loadWorldData("test")) {
 			Chunk.SEED = new Random().nextInt(1000000000);
-		}
-		
+			Scene.world_origin =  new Vector2f(0,0);
+		} 
 		Player player = ResourceManager.loadPlayer("test");
 		if(player!=null) {
 			Scene.player = player;

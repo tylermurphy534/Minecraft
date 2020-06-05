@@ -11,9 +11,12 @@ import java.nio.file.Files;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
+import org.lwjgl.util.vector.Vector2f;
+
 import com.Minecraft.Chunk.Chunk;
 import com.Minecraft.Scene.Camera;
 import com.Minecraft.Scene.Player;
+import com.Minecraft.Scene.Scene;
 import com.Minecraft.Util.Constants;
 
 public class ResourceManager {
@@ -173,6 +176,7 @@ public class ResourceManager {
 	private static class WorldData implements Serializable {
 		private static final long serialVersionUID = 6114369009417939853L;
 		public int SEED;
+		public Vector2f WORLD_ORIGIN;
 	}
 	
 	private static class ChunkData implements Serializable {
@@ -185,6 +189,7 @@ public class ResourceManager {
 		WorldData data = (WorldData) loadObject(Constants.SAVES_LOCATION+"/"+saveName+"/","data");
 		if(data != null) {
 			Chunk.SEED = data.SEED;
+			Scene.world_origin = data.WORLD_ORIGIN;
 			return true;
 		} else {
 			return false;
@@ -194,6 +199,7 @@ public class ResourceManager {
 	public static void saveWorldData(String saveName) {
 		WorldData data = new WorldData();
 		data.SEED = Chunk.SEED;
+		data.WORLD_ORIGIN = Scene.world_origin;
 		saveObject(Constants.SAVES_LOCATION+"/"+saveName+"/","data",data);
 	}
 	

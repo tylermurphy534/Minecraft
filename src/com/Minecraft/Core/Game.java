@@ -88,19 +88,19 @@ public class Game{
 		}
 		
 		if((int)Scene.player.getPosition().x>=256) {
-			Scene.world_origin.x += Math.abs((int)(Scene.player.getPosition().x%256))*256;
-			Scene.player.getPosition().x -= Math.abs((int)(Scene.player.getPosition().x%256))*256;
+			Scene.world_origin.x += 256;
+			Scene.player.getPosition().x -= 256;
 		} else if((int)Scene.player.getPosition().x<=-256) {
-			Scene.world_origin.x -= Math.abs((int)(Scene.player.getPosition().x%256))*256;
-			Scene.player.getPosition().x += Math.abs((int)(Scene.player.getPosition().x%256))*256;
+			Scene.world_origin.x -= 256;
+			Scene.player.getPosition().x += 256;
 		}
 		
 		if((int)Scene.player.getPosition().z>=256) {
-			Scene.world_origin.y += Math.abs((int)(Scene.player.getPosition().z%256))*256;
-			Scene.player.getPosition().z -= Math.abs((int)(Scene.player.getPosition().z%256))*256;
+			Scene.world_origin.y += 256;
+			Scene.player.getPosition().z -= 256;
 		} else if((int)Scene.player.getPosition().z<=-256) {
-			Scene.world_origin.y -= Math.abs((int)(Scene.player.getPosition().z%256))*256;
-			Scene.player.getPosition().z += Math.abs((int)(Scene.player.getPosition().z%256))*256;
+			Scene.world_origin.y -= 256;
+			Scene.player.getPosition().z += 256;
 		}
 	}
 	
